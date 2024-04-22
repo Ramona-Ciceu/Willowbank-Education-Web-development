@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    <style>
+    /* Creates the formatting for which the badges are spaced apart */
+        .column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+                }
+    .row::after{
+  content: "";
+  clear: both;
+  display: table;
+                }
+        
+    </style>
+
+</head>
+
+<body>
+
+    <img src="logo.png" alt="Willowbank" style="width: 100px; float: left; margin-right: 10px;">
+    <h2 style="color: darkgreen;">Willowbank Education: Fishing and Forest school</h2>
+    <h4> Current user: [current user]</h4>
+    <br><br>
+    <h2 style="color: #6b4a0f;" >Badges </h2>
+    <script>
+        const current = 1;
+        /*dummy data*/
+        var names = ["Badge1", "Badge2", "Badge3", "Badge4", "Badge5"];
+        var dates = ["01/08/2004","05/10/1980","07/12/2011","27/08/2011","20/02/1974"];
+        /*creates the template of the form the badges will be in.*/
+        function templateCreation()
+        {
+        var templates = [];
+        var eye = (current*4)-4;
+        //creates the begining of the division that will be used to format the
+        templates.push('<div class="row">');
+        for(let i = eye; i < eye+4; i++)
+        {
+            if(names.length >= eye)
+            {//the format of the output of the badges
+                templates.push('<div class="column"> <h4>'+names[i]+'</h4><img src="image.png" alt="Badge_Img" width="200" height="200"><p>'+dates[i]+'</p> </div>');
+            }
+            else
+            {
+                break;
+            }
+        }
+        //ends the division created.
+        templates.push('</div>');
+        return templates;
+        }
+        /*outputs the template. This may need to be called multiple times*/
+        function output()
+        {
+            var array = templateCreation();
+            for(let i = 0; i < 6; i++)
+                {
+                    document.write(array[i]);
+                }
+
+        //doesnt work needs update.        
+        document.write('<button type="button" id="BackButton" onclick='+increase(1)+' aria-disable="false">Back</button>;');
+        document.write('<button type="button" id="ForwardButton" onclick='+increase(-1)+' aria-disable="true">Forward</button>;');
+        }
+        
+        function increase(num)
+        {
+            current+=num;
+            if(current == 1)
+            {
+                document.getElementById("BackButton").disabled
+            }
+            output();
+        }
+
+        output(0);
+
+    </script>
+
+</body>
+
+</html>
