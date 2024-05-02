@@ -4,33 +4,90 @@
  
     <style>
     /* Creates the formatting for which the badges are spaced apart */
-        .column {
-  float: left;
-  width: 33.33%;
-  padding: 5px;
-                }
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 5px;
+    }
     .row::after{
-  content: "";
-  clear: both;
-  display: table;
-                }
+        content: "";
+        clear: both;
+        display: table;
+    }
         
+    /* colours the background */
+    html {
+        background-color: #a8ce8f
+    }
+
+    /* Removes the space between items and the border, and sets the style for the text. */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* creates a banner that looks in line with the theme */
+    header {
+        background-color: darkgreen;
+        color: white;
+        padding: 10px 10px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0px;
+    }
+
+    /* indents the badges as so that they arent hugging the border */
+    .badges{
+        margin-left: 20px;
+    }
+
+    /* indents the text as so that they aren't hugging the wall */
+    h2{
+        margin-left: 10px;
+    }
+
+    /* sizes the image used within the home button as so that it is the correct size. */
+    .homeButtonImg{
+        width: 80px;
+        height: 80px;;
+    }
+
+    /* A footer so that the website looks uniform */
+    footer {
+      background-color: darkgreen;
+      color: white;
+      padding: 40px 100%;
+      text-align: right;
+      margin-bottom: 0px;
+      position: absolute;
+      bottom: 0;
+    }
+
     </style>
 
 </head>
 
 <body>
-
-    <img src="logo.png" alt="Willowbank" style="width: 100px; float: left; margin-right: 10px;">
+    <header>
+    <img src="logo.png" alt="Willowbank" style="width: 80px; height: 80px; left; margin-right: 10px;">
     <h2 style="color: darkgreen;">Willowbank Education: Fishing and Forest school</h2>
-    <h4> Current user: [current user]</h4>
-    <br><br>
+
+
+    <button type="button" onclick="[The home page link]">
+        <img src = "[Insert image for homebutton]" class="homeButtonImg" alt="button" />
+    </button>
+    </header>
+    
     <h2 style="color: #6b4a0f;" >Badges </h2>
+
+    <div class="badges">
     <script>
         const current = 1;
         /*dummy data*/
         var names = ["Badge1", "Badge2", "Badge3", "Badge4", "Badge5"];
         var dates = ["01/08/2004","05/10/1980","07/12/2011","27/08/2011","20/02/1974"];
+        var imgs = ["[img1]",["img2"],["img3"],["img4"],["img5"]]
         /*creates the template of the form the badges will be in.*/
         function templateCreation()
         {
@@ -42,7 +99,7 @@
         {
             if(names.length >= eye)
             {//the format of the output of the badges
-                templates.push('<div class="column"> <h4>'+names[i]+'</h4><img src="image.png" alt="Badge_Img" width="200" height="200"><p>'+dates[i]+'</p> </div>');
+                templates.push('<div class="column"> <h4>'+names[i]+'</h4><img src="[image of the badge]" alt="Badge_Img" width="200" height="200"><p>'+dates[i]+'</p> </div>');
             }
             else
             {
@@ -58,13 +115,11 @@
         {
             var array = templateCreation();
             for(let i = 0; i < 6; i++)
-                {
-                    document.write(array[i]);
-                }
-
-        //doesnt work needs update.        
-        document.write('<button type="button" id="BackButton" onclick='+increase(1)+' aria-disable="false">Back</button>;');
-        document.write('<button type="button" id="ForwardButton" onclick='+increase(-1)+' aria-disable="true">Forward</button>;');
+            {   
+                document.write('<div class="individualBadge">');
+                document.write(array[i]);
+                document.write('</div>')
+            }
         }
         
         function increase(num)
@@ -80,6 +135,9 @@
         output(0);
 
     </script>
+    </div>
+
+    <footer></footer>
 
 </body>
 
