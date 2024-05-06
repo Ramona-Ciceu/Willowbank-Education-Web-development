@@ -106,6 +106,24 @@
   th:hover{
     background-color: grey;
   }
+
+
+  .box{
+    width:800px;
+    height:400px;
+    border: 1px solid #a8ce8f;
+    padding: 10px;
+    margin:10px;
+    background-color: #a8ce8f;
+    position: absolute;
+    opacity: 100%;
+    color: white;
+    text-align: center;
+    overflow: scroll;
+  }
+
+  
+
   
 
 </style>
@@ -142,165 +160,51 @@
 <div class="Activities">
   <h2>Activities</h2>
   <table id="activities">
-
   </table>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="badgeModal" class="modal" style="display: none;">
-  <form class="modal-content" method="post">
-    <label><b>Badges</b></label>
-    <div id="listOfBadges">
-    </div>
-    <script>
-      function badgeConnection()
-      {
-        var badgeArray = /* an array of badges collected from the database*/;
-        text = "";
-        for (var i = 0; i < array.length; i++)
-        {
-          text+="<tr><th>"
-          text+=array[i]
-          text+="</tr></th>"
-        }
-        var table = document.getElementById("listOfBadges");
-        table.innerHTML = text;
-        if (table != null) 
-        {
-          for (var i = 0; i < table.rows.length; i++) 
-          {
-            table.rows[i].onclick = function () 
-              {
-                addBadge(this.innerHTML.split(" ")[1]);
-              };
-          }
-        }       
-      }
-  
-      function addBadge()
-      {
-  
-      }
-  
-  
-    </script>
-    
-  
-  
-  
-  
-    <button type="button" onclick=/*Provides the correct update query to the database*/ style="padding: 6px 10px; font-size: 12px;">Auto Generate</button>
-  
-  
-  
-  
-  </form>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="box" id="boxx" style="visibility: hidden;">
+
+  <h4>Fishing</h4>
+  <img src="[fishing image]" alt="no image">
+  <h4>Crafting</h4>
+  <img src="[crafting image]" alt="no image">
+  <h4>fire</h4>
+  <img src="[fire image]" alt="no image">
+  <h4>Forestry</h4>
+  <img src="[Forestry image]" alt="no image">
+
+
+<button id="buttonEnter" onclick="alert('Badge assigned correctly')">Confirm</button>
+</div>
 <footer>
-  <button id="certificatesBtn">Certificates</button>
+  <button id="badgeBtn" onclick="onPress()">Badges</button>
+
 </footer>
   <script>
 
     //dummy data
-    const inputstudents = ["Bob","Steve","Jeff"];
+    const inputstudents = ["Jemma","Steve","Jeff","Craig","Julie","Bethany","Jessica","Hope","James","David"];
     const inputclasses = ["1","2","3"];
     const inputdates = ["1/8/2004","8/10/2010","26/1/1980"];
     const inputactivites = ["fishing","crafting","fire"];
 
-    function populateStudentsTable() {     
+
+/*
+    var sqlClasses = "SELECT classID FROM [table]";
+    var inputClasses;
+
+    var sqlStudents;
+    var sqlactivities;
+    var sqldates;
+    var inputstudents;
+    var inputactivites;
+    var inputdates;
+*/
+
+
+
+    function populateStudentsTable() {
       //insert students info from table
       //use a select query to acquire the class of students
       text = ""
@@ -309,7 +213,17 @@
         text+="<tr><th>"+inputstudents[i]+"</th></tr>";
       }
       var table = document.getElementById("students");
-      table.innerHTML = text; 
+      table.innerHTML = text;
+      if (table != null) 
+      {
+        for (var i = 0; i < table.rows.length; i++) 
+        {        
+          table.rows[i].onclick = function () 
+            {
+              ifbadge(this.innerHTML.split(" ")[1]);
+            };
+        }
+      } 
     }
 
     function populateClassesTable() {
@@ -370,10 +284,25 @@
         table.innerHTML = text;   
       }
 
+
+
+    function ifbadge()
+    {
+
+      
+    }
+
     function classchoice(classChoice)
     {
       //enter database connection that takes the input from a class choice and provides the students and dates of the activities for a class.
 
+      /*
+      sqlStudents = "SELECT students FROM [table] WHERE classID == "+classChoice
+      sqldates = "SELECT dates FROM [table] WHERE classID == "+classChoice
+      
+      "<?php echo $sql="+sqlStudents+"; "+inputstudents=+"execute(sql); ?>"
+
+      */
       inputstudents = //array of students from select statement
       inputdates = //array of dates from select statement
       refresh();
@@ -381,7 +310,7 @@
 
     function dateChoice(datechoice)
     {
-      //enter database connection that takes input from a date choice and provides the activities for that day.
+      sqlactivities = "SELECT activities FROM [table] WHERE date == "+datechoice
       inputactivites = //array of activites from select statement
       refresh();
     }
@@ -394,10 +323,19 @@
       populateStudentsTable();
     }
 
-    document.getElementById("certificatesBtn").addEventListener("click", () => {
-      // Add logic to handle certificates button click
-      console.log("Certificates button clicked");
-    });
+    function onPress()
+    {
+      var box = document.getElementById("boxx");
+      if(box.style.visibility == "visible")
+      {
+        box.style.visibility = "hidden";
+
+      }
+      else
+      {
+        box.style.visibility = "visible"
+      }
+    }
 
     refresh();
 
