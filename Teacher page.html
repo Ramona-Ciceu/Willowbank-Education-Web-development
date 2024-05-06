@@ -1,0 +1,406 @@
+<head>
+<title>Teacher Page</title>
+<style>
+
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+        background-color: darkgreen;
+        color: white;
+        padding: 10px 10px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0px;
+    }
+
+  .logo img {
+    height: 50px;
+  }
+
+  .user {
+    align-self: center;
+  }
+
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .students {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    float: left;
+  }
+
+  .Classes {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    float: left;
+  }
+
+  .dates {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    float: left;
+  }
+
+  .activities {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    float: left;
+  }
+
+
+  h2 {
+    color: #333;
+  }
+
+  #activityForm input, #activityForm button {
+    margin-bottom: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table, th, td {
+    border: 1px solid darkgreen;
+    padding: 8px;
+  }
+
+  footer {
+      background-color: darkgreen;
+      color: white;
+      padding: 40px 50%;
+      text-align: right;
+      margin-bottom: 0px;
+      position: absolute;
+      bottom: 0;
+    }
+
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  th:hover{
+    background-color: grey;
+  }
+  
+
+</style>
+</head>
+<body>
+<header>
+   <div class="logo">
+    <img src="logo.png" alt="Logo">
+  </div>
+  <div class="user">
+    <span>Welcome, Teacher</span>
+  </div>
+</header>
+
+
+<div class="Classes">
+  <h2>Classes</h2>
+  <table id="classes">
+  </table>
+</div>
+
+<div class="Students">
+  <h2>Students</h2>
+  <table id="students">
+  </table>
+</div>
+
+<div class="Dates">
+  <h2>Dates</h2>
+  <table id="dates">
+  </table>
+</div>
+
+<div class="Activities">
+  <h2>Activities</h2>
+  <table id="activities">
+
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="badgeModal" class="modal" style="display: none;">
+  <form class="modal-content" method="post">
+    <label><b>Badges</b></label>
+    <div id="listOfBadges">
+    </div>
+    <script>
+      function badgeConnection()
+      {
+        var badgeArray = /* an array of badges collected from the database*/;
+        text = "";
+        for (var i = 0; i < array.length; i++)
+        {
+          text+="<tr><th>"
+          text+=array[i]
+          text+="</tr></th>"
+        }
+        var table = document.getElementById("listOfBadges");
+        table.innerHTML = text;
+        if (table != null) 
+        {
+          for (var i = 0; i < table.rows.length; i++) 
+          {
+            table.rows[i].onclick = function () 
+              {
+                addBadge(this.innerHTML.split(" ")[1]);
+              };
+          }
+        }       
+      }
+  
+      function addBadge()
+      {
+  
+      }
+  
+  
+    </script>
+    
+  
+  
+  
+  
+    <button type="button" onclick=/*Provides the correct update query to the database*/ style="padding: 6px 10px; font-size: 12px;">Auto Generate</button>
+  
+  
+  
+  
+  </form>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+  <button id="certificatesBtn">Certificates</button>
+</footer>
+  <script>
+
+    //dummy data
+    const inputstudents = ["Bob","Steve","Jeff"];
+    const inputclasses = ["1","2","3"];
+    const inputdates = ["1/8/2004","8/10/2010","26/1/1980"];
+    const inputactivites = ["fishing","crafting","fire"];
+
+    function populateStudentsTable() {     
+      //insert students info from table
+      //use a select query to acquire the class of students
+      text = ""
+      for(let i = 0; i < inputstudents.length; i++)
+      {
+        text+="<tr><th>"+inputstudents[i]+"</th></tr>";
+      }
+      var table = document.getElementById("students");
+      table.innerHTML = text; 
+    }
+
+    function populateClassesTable() {
+      //insert classes info from table
+      //insert 'for' loop iterating through all classes
+      text = ""
+      for(let i = 0; i < inputclasses.length; i++)
+      {
+        text+="<tr><th> "+inputclasses[i]+" </th></tr>";
+      }
+      var table = document.getElementById("classes");
+      table.innerHTML = text;
+      if (table != null) 
+      {
+        for (var i = 0; i < table.rows.length; i++) 
+        {        
+          table.rows[i].onclick = function () 
+            {
+              classchoice(this.innerHTML.split(" ")[1]);
+            };
+        }
+      } 
+    }
+
+    function populateDatesTable() {
+      //insert dates info from table
+      //insert 'for' loop iterating through all dates of a certain class
+      text = ""
+      for(let i = 0; i < inputdates.length; i++)
+      {
+        text+='<tr><th> ';
+        text+=inputdates[i];
+        text+=" </th></tr>";
+      }
+      var table = document.getElementById("dates");
+      table.innerHTML = text;
+      if (table != null) 
+      {
+        for (var i = 0; i < table.rows.length; i++) 
+        {
+          table.rows[i].onclick = function () 
+            {
+              dateChoice(this.innerHTML.split(" ")[1]);
+            };
+        }
+      } 
+    }
+
+    function populateActivitiesTable() {
+        //insert activities info from table
+        //insert 'for' loop iterating through all activites of a certain day
+        text = ""
+        for(let i = 0; i < inputactivites.length; i++)
+        {
+          text+="<tr><th>"+inputactivites[i]+"</th></tr>";
+        }
+        var table = document.getElementById("activities");
+        table.innerHTML = text;   
+      }
+
+    function classchoice(classChoice)
+    {
+      //enter database connection that takes the input from a class choice and provides the students and dates of the activities for a class.
+
+      inputstudents = //array of students from select statement
+      inputdates = //array of dates from select statement
+      refresh();
+    }
+
+    function dateChoice(datechoice)
+    {
+      //enter database connection that takes input from a date choice and provides the activities for that day.
+      inputactivites = //array of activites from select statement
+      refresh();
+    }
+
+    function refresh()
+    {
+      populateActivitiesTable();
+      populateDatesTable();
+      populateClassesTable();
+      populateStudentsTable();
+    }
+
+    document.getElementById("certificatesBtn").addEventListener("click", () => {
+      // Add logic to handle certificates button click
+      console.log("Certificates button clicked");
+    });
+
+    refresh();
+
+  </script>
+</body>
+</html>
